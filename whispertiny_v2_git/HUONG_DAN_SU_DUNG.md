@@ -44,7 +44,9 @@ import json
 
 # 1. Tải Whisper Model (Lần đầu chạy sẽ tự động tải model từ internet)
 print("Đang tải model Whisper...")
-# Nên dùng base.en hoặc tiny.en cho tốc độ nhanh
+# Lưu ý: Nếu bạn ĐÃ tải sẵn model Whisper trên máy từ trước (ở thư mục mặc định), 
+# hãy xoá tham số download_root=".models" để Whisper dùng lại model cũ, tránh tải lại.
+# Ví dụ: model = whisper.load_model("base.en")
 model = whisper.load_model("base.en", download_root=".models")
 
 # 2. Khởi tạo Logit Bias Filter
@@ -106,3 +108,4 @@ Sau khi hệ thống đã chạy được, bạn hoàn toàn có thể thay đ�
 - **Sửa logit_bias.json:**
   - Thêm/bớt các từ khoá cần bắt (ví dụ: Wi-Fi, outer, QoS...).
   - Điều chỉnh ias: Mức tăng xác suất (ví dụ 1.0 đến 3.0). Bias quá cao có thể gây "ảo giác" (hallucination) khiến từ đó xuất hiện mọi nơi dù không có tiếng nói, nên tăng từ từ.
+
